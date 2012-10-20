@@ -1,0 +1,165 @@
+﻿/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+body
+{
+    background: url(/Content/images/bg.gif);
+    font-family: Verdana;
+    font-size: 10px;
+}
+
+a
+{
+    font-size: 10px;
+    color: #000;
+    text-decoration: none;
+}
+
+.biginput
+{
+    font-size: 75px;
+    font-weight: bold;
+    background: transparent;
+    border: 0;
+    width: 96%;
+    text-transform: uppercase;
+    padding: 0 10px;
+}
+
+.biginput:focus
+{
+    outline: none;
+}
+
+
+#container .item
+{
+  width: 290px;
+  margin: 10px;
+  padding: 5px;
+  float: left;
+  background: #ffF;
+  box-shadow: 1px 1px 5px #ccc;
+  position: relative;
+}
+
+#container .item p.description {
+    font-size: 13px;
+    line-height: 15px;
+}
+
+#container .item .header
+{
+    width: 100%;
+}
+
+#container .item .footer
+{
+
+}
+
+#container .item .flag
+{
+    position: absolute;
+    top: 10px;
+    left: -5px;
+    color: #fff;
+    background: red;
+    padding: 5px;
+    font-size: 12px;
+}
+
+
+.headerimage {
+    position: relative;
+}
+
+    .headerimage p {
+        position: absolute;
+        bottom: 1px;
+        /*background: #fff;*/
+        background: rgba(0, 0, 0, .4);
+        color: #fff;
+        text-shadow: 1px 1px 2px #000;
+        padding: 5px 0;
+        text-align: center;        
+        left: 0;
+        font-size: 14px;
+        width: 100%;
+    }
+
+
+
+/**** Transitions ****/
+
+.masonry,
+.masonry .masonry-brick {
+  -webkit-transition-duration: 0.7s;
+     -moz-transition-duration: 0.7s;
+      -ms-transition-duration: 0.7s;
+       -o-transition-duration: 0.7s;
+          transition-duration: 0.7s;
+}
+
+.masonry {
+  -webkit-transition-property: height, width;
+     -moz-transition-property: height, width;
+      -ms-transition-property: height, width;
+       -o-transition-property: height, width;
+          transition-property: height, width;
+}
+
+.masonry .masonry-brick {
+  -webkit-transition-property: left, right, top;
+     -moz-transition-property: left, right, top;
+      -ms-transition-property: left, right, top;
+       -o-transition-property: left, right, top;
+          transition-property: left, right, top;
+}

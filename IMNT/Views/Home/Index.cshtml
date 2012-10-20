@@ -1,0 +1,98 @@
+﻿@model IMNT.Models.RememberList
+@{
+    ViewBag.Title = "Index";
+}
+<form id="form">
+    <input type="text" placeholder="http://" id="address" class="biginput" />
+</form>
+<div id="container">
+    @foreach (var post in Model.Posts)
+    {
+        <div class="item">
+            <a href="@post.Url">
+                <div class="headerimage">
+                    <img src="@post.Image" class="header" />
+                    <p>@post.Title</p>
+                </div>
+                <p class="description">
+                    @post.Description
+                </p>
+                <div class="flag">@post.Type</div>
+            </a>
+        </div>
+    }
+</div>
+
+@section scripts{
+    <script src="/Scripts/jquery.masonry.min.js" type="text/javascript"></script>
+    <script src="/Scripts/knockout-2.1.0.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+        var noteModel = function () {
+            var priv = {};
+            var pub = {};
+
+            pub.viewModel = function (config) {
+                var inner = {};
+
+                inner.Init = function () {
+
+                    config.form.submit(function (e) {
+                        e.preventDefault();
+                        inner.addNote(config.addressField.val());
+                        config.addressField.val("");
+                    });
+
+
+                    //config.addressField.keypress(function (e) {
+                    //    if (e.which == 13) {
+                    //        e.preventDefault();
+                    //        inner.addNote(config.addressField.val());
+                    //        config.addressField.val("");
+                    //    }
+                    //});
+                };
+
+                inner.addNote = function (address) {
+                    $.ajax({
+                        type: 'POST',
+                        url: '/home/scrape/',
+                        data: { 'url': address, 'userName': config.userName },
+                        dataType: 'json',
+                        success: function (response) {
+                            //var $box = $('<div class="item"><div class="headerimage"><img src="' + response.Image + '" class="header" /><a href="' + response.Url + '">' + response.Title + '</a></div><div class="flag">' + response.Type + '</div><div class="footer">' + response.Description + '</div></div>');
+                            var $box = $('<div class="item"><div class="headerimage"><img src="' + response.Image + '" class="header" /><a href="' + response.Url + '">' + response.Title + '</a></div><div class="flag">' + response.Type + '</div></div>');
+
+                            $('#container').append($box).masonry('appended', $box);
+                        }
+                    });
+                };
+
+                inner.Init();
+                return inner;
+            };
+
+            return pub;
+        };
+
+
+        var config = {
+            addressField: $('#address'),
+            userName: '@Model.UserName',
+            form: $("#form")
+        };
+
+
+        $(function () {
+            $('#container').masonry({
+                // options
+                itemSelector: '.item',
+                columnWidth: 320,
+                isAnimated: false
+            });
+
+            new noteModel().viewModel(config);
+
+        });
+    </script>
+}
